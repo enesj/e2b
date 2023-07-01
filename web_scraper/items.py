@@ -1,11 +1,10 @@
 ```python
 from scrapy import Item, Field
 
-class RedditItem(Item):
+class RedditScraperItem(Item):
     title = Field()
     url = Field()
-    author = Field()
-    upvotes = Field()
     comments = Field()
+    upvotes = Field()
     subreddit = Field()
 ```

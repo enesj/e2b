@@ -1,17 +1,15 @@
-1. **Scrapy**: All the files share the Scrapy library as a dependency. Scrapy is used for creating the web scraper and handling the extraction of data.
+1. Scrapy: All the files will use Scrapy, a Python framework for web scraping. It will be used to create spiders, define items, and handle data pipelines.
 
-2. **JSON**: The JSON module is shared between the files as it is used to store the scraped data in a structured format.
+2. RedditScraperItem: Defined in "items.py", this class will be used in "reddit_scraper.py" and "reddit_spider.py" to structure the data scraped from Reddit.
 
-3. **Items**: The `items.py` file defines the data schema for the scraped data. This schema is shared across `reddit_scraper.py`, `pipelines.py`, and `reddit_spider.py` as they need to know what data to extract and how to process it.
+3. RedditSpider: This class will be defined in "reddit_spider.py" and used in "reddit_scraper.py" to handle the actual scraping process.
 
-4. **Pipelines**: The `pipelines.py` file defines how the scraped data should be processed and stored. This is shared with `reddit_scraper.py` and `reddit_spider.py` as they need to send the scraped data to the pipeline for processing.
+4. JSONExportPipeline: Defined in "pipelines.py", this class will be used in "reddit_scraper.py" and "settings.py" to handle the storage of scraped data in a structured JSON format.
 
-5. **Settings**: The `settings.py` file contains settings for the Scrapy spider. These settings are shared across all the files as they dictate the behavior of the spider and the scraping process.
+5. remove_markup: This function will be defined in "remove_markup.py" and used in all Python files to remove the Markup.
 
-6. **RedditSpider**: The `reddit_spider.py` file defines the RedditSpider class which is used to scrape data from Reddit. This class is shared with `reddit_scraper.py` as it needs to instantiate the spider to start the scraping process.
+6. SETTINGS: This dictionary will be defined in "settings.py" and used in "reddit_scraper.py" to configure the Scrapy settings.
 
-7. **MarkupRemover**: The `markup_remover.py` file defines the MarkupRemover class which is used to remove the Markup from Python files. This class is shared with `reddit_scraper.py` as it needs to use it to clean the scraped data.
+7. Reddit DOM elements: The specific id names of Reddit DOM elements to be scraped will be shared between "reddit_scraper.py" and "reddit_spider.py".
 
-8. **DOM Elements**: The id names of DOM elements that the RedditSpider will interact with are shared across `reddit_scraper.py` and `reddit_spider.py`. These id names are used to locate the elements on the webpage from which data needs to be extracted.
-
-9. **Function Names**: Function names such as `parse`, `process_item`, `remove_markup` are shared across multiple files as they are used to perform specific tasks in the scraping process.
+8. Pagination and dynamic content handling: The logic and function names related to handling pagination and dynamic content on Reddit will be shared between "reddit_scraper.py" and "reddit_spider.py".
