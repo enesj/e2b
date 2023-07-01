@@ -1,13 +1,22 @@
 ```python
+import scrapy
 from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
-from web_scraper.spiders.reddit_spider import RedditSpider
+from .spiders.reddit_spider import RedditSpider
+from .items import RedditScraperItem
+from .pipelines import JSONExportPipeline
+from .settings import SETTINGS
+from .utils.remove_markup import remove_markup
 
-def main():
-    process = CrawlerProcess(get_project_settings())
-    process.crawl(RedditSpider)
-    process.start()
+class RedditScraper:
+    def __init__(self):
+        self.process = CrawlerProcess(settings=SETTINGS)
+        self.spider = RedditSpider
+
+    def start(self):
+        self.process.crawl(self.spider)
+        self.process.start()
 
 if __name__ == "__main__":
-    main()
+    scraper = RedditScraper()
+    scraper.start()
 ```

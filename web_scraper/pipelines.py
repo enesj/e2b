@@ -1,16 +1,20 @@
 ```python
 import json
+from scrapy.exporters import JsonItemExporter
+from .items import RedditScraperItem
 
-class JsonWriterPipeline(object):
-
-    def open_spider(self, spider):
-        self.file = open('web_scraper/output.json', 'w')
+class JSONExportPipeline(object):
+    def __init__(self):
+        self.file = open("reddit_data.json", 'wb')
+        self.exporter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
+        self.exporter.start_exporting()
 
     def close_spider(self, spider):
+        self.exporter.finish_exporting()
         self.file.close()
 
     def process_item(self, item, spider):
-        line = json.dumps(dict(item)) + "\n"
-        self.file.write(line)
+        if isinstance(item, RedditScraperItem):
+            self.exporter.export_item(item)
         return item
 ```

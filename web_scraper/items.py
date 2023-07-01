@@ -1,10 +1,10 @@
 ```python
-import scrapy
+from scrapy import Item, Field
 
-class RedditScraperItem(scrapy.Item):
-    # define the fields for your item here like:
-    title = scrapy.Field()
-    url = scrapy.Field()
-    upvotes = scrapy.Field()
-    comments = scrapy.Field()
+class RedditScraperItem(Item):
+    title = Field()
+    url = Field()
+    comments = Field()
+    upvotes = Field()
+    subreddit = Field()
 ```
